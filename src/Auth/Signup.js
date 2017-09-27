@@ -4,7 +4,7 @@ import {Redirect} from 'react-router'
 export default class Signup extends Component {
 
   constructor () {
-    super();
+    super()
   }
 
   render () {

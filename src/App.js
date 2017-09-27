@@ -6,9 +6,8 @@ import './App.css'
 import Header from './Header'
 import Home from './Home'
 import Admin from './Admin'
+import Blog from './Blog'
 import Signin from './Auth/Signin'
-
-
 
 export default class App extends Component {
 
@@ -47,9 +46,10 @@ export default class App extends Component {
       <div>
         <Header isLogedIn={this.state.isLogedIn}/>
         <main>
-            <Route exact path="/home" render={(props) => (checkAuth(Home, true, props))} />
-            <Route exact path="/admin" render={(props) => (checkAuth(Admin, true, props))} />
-            <Route path="/auth/signin" render={(props) => (checkAuth('/home', false, props, Signin))} />
+            <Route exact path="/home" component={(props) => (checkAuth(Home, true, props))} />
+            <Route exact path="/admin" component={(props) => (checkAuth(Admin, true, props))} />
+            <Route exact path="/blog" component={(props) => (checkAuth(Blog, true, props))} />
+            <Route path="/auth/signin" component={(props) => (checkAuth('/home', false, props, Signin))} />
         </main>
       </div>
     )

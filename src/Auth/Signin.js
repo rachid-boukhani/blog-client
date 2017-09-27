@@ -29,6 +29,7 @@ class Signin extends Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault()
     const {username, password} = this.state.userinfo
     fetch(config.apis.auth, {
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
@@ -45,7 +46,6 @@ class Signin extends Component {
       }
     })
     .catch(console.error)
-    e.preventDefault()
   }
 
   render () {
