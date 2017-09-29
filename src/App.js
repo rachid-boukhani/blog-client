@@ -21,7 +21,10 @@ export default class App extends Component {
       loading: true,
       error: ''
     }
-    this.updateState()
+  }
+
+  componentDidMount() {
+    this.loadPosts()
   }
 
   isLoggedIn() {
@@ -30,10 +33,10 @@ export default class App extends Component {
 
   signInDone= (token) => {
     localStorage.setItem("token", token)
-    this.updateState()
+    this.loadPosts()
   }
 
-  updateState() {
+  loadPosts() {
     const postsPromise = new Promise((resolve, reject) => {
       if (this.state.isLogedIn) {
         fetch(config.apis.posts, {
