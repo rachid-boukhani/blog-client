@@ -30,13 +30,7 @@ class Menu extends Component {
         {
           this.state.links
           .filter(link => {return (!link.requireLogin || this.props.isLogedIn)})
-          .map((link, i) => {
-            if (link) {
-              return (
-                <MenuItem key={i} containerElement={<Link to={link.url}/>} primaryText={link.name}/>
-              )
-            }
-          })
+          .map((link, i) => <MenuItem key={i} containerElement={<Link to={link.url}/>} primaryText={link.name}/>)
         }
       </IconMenu>
     )

@@ -2,13 +2,11 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Redirect} from 'react-router'
 import {Helmet} from "react-helmet"
-
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import config from '../config'
 
 class Signin extends Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -79,7 +77,7 @@ class Signin extends Component {
 }
 
 Signin.propTypes = {
-  signInDone: PropTypes.func
+  signInDone: PropTypes.func.isRequired
 }
 
 export default Signin

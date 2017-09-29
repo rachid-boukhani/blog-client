@@ -1,57 +1,28 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import TextField from 'material-ui/TextField'
 import Card from './Card'
-import config from '../config'
 
-export default class Admin extends Component {
+export default class Blog extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       search: '',
-      filteredPosts: [],
-      posts: [],
-      error: void 0
+      filteredPosts: this.props.posts
     }
-    this.getPosts()
   }
 
   handleSearchChange= (e) => {
     const search = e.target.value
-    this.setState((prevState) => ({
-        search: search,
-        filteredPosts: prevState.posts.filter(post => post.title.includes(search))
-      })
-    )
-  }
-
-  getPosts() {
-    fetch(config.apis.posts, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      method: 'GET'
+    this.setState({
+      search: search,
+      filteredPosts: this.props.posts.filter(post => post.title.includes(search))
     })
-    .then((response) => response.json())
-    .then(result => {
-      if (result.error) {
-        this.setState({error: result.error})
-      } else {
-        this.setState({
-          search: '',
-          filteredPosts: result,
-          posts: result
-        })
-      }
-    })
-    .catch(console.error)
   }
 
   render () {
-    const  posts = this.state.filteredPosts
     const styles = {
       root: {
         display: 'flex',
@@ -77,7 +48,7 @@ export default class Admin extends Component {
         </div>
 
         <div style={styles.root}>
-            {posts.map((post, i) => (
+            {this.state.filteredPosts.map((post, i) => (
                 <Card key={i} {...post}/>
             ))}
         </div>
@@ -86,4 +57,8 @@ export default class Admin extends Component {
       </section>
     )
   }
+}
+
+Blog.props = {
+  posts: PropTypes.array
 }

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
@@ -8,10 +7,6 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import Menu from './Menu'
 
 class Header extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
       <div>
