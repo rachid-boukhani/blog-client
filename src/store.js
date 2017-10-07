@@ -1,7 +1,14 @@
 import {createStore, combineReducers} from 'redux'
 
 const posts = (state = [], action) => {
-  // TODO
+  switch (action.type) {
+    case 'POSTS_FETCHED':
+      return action.posts
+    case 'ADD_POST':
+      return [...state, {_id: action._id, title: action.title, text: action.text}]
+    default:
+      return []
+  }
 }
 
 const appReducer = combineReducers({posts})

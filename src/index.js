@@ -15,7 +15,7 @@ render((
         <App />
       </MuiThemeProvider>
     </BrowserRouter>
-  </Provider>,
+  </Provider>
 ), document.getElementById('root'))
 
 registerServiceWorker()
