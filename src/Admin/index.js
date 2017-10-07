@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router'
+import {connect} from 'react-redux'
 import Helmet from 'react-helmet'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import config from '../config'
 
-export default class Admin extends Component {
+class Admin extends Component {
 
   constructor() {
     super();
@@ -62,8 +63,8 @@ export default class Admin extends Component {
             <form className="card"  onSubmit={this.handleSubmit}>
               <div>
                 <h1>Create a post!</h1><br/>
-                <TextField name="title"  onChange={this.handleTitleChange} value={this.state.post.title} hintText="Post title"/><br />
-                <TextField name="content"  onChange={this.handleContentChange} value={this.state.post.text} multiLine={true} rows={10}/><br />
+                <TextField name="title"  onChange={this.handleTitleChange} value={this.props.post.title} hintText="Post title"/><br />
+                <TextField name="content"  onChange={this.handleContentChange} value={this.props.post.text} multiLine={true} rows={10}/><br />
                 <RaisedButton type="submit" label="Submit" primary={true}/>
               </div>
             </form>
@@ -72,3 +73,16 @@ export default class Admin extends Component {
       }
   }
 }
+
+const mapStateToProps = state => ({
+  post: state.post
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleAddPost(event) {
+    dispatch(setSearchTerm(event.target.value));
+  }
+});
+
+
+export default connect(mapStateToProps)(Admin);
