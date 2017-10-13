@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import config from '../config'
+import config from '../../config'
 
 class Admin extends Component {
 
@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleAddPost(event) {
-    dispatch(setSearchTerm(event.target.value));
+    // dispatch(setSearchTerm(event.target.value));
   }
 });
 

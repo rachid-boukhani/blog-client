@@ -3,13 +3,13 @@ import {Redirect} from 'react-router'
 import {Route} from 'react-router-dom'
 
 import './App.css'
-import config from './config'
-import Header from './Header'
-import Home from './Home'
-import Admin from './Admin'
-import Blog from './Blog'
-import Card from './Blog/Card'
-import Signin from './Auth/Signin'
+import config from '../config'
+import Header from '../components/Header'
+import Home from '../components/Home'
+import Admin from '../components/Admin'
+import Blog from '../components/Blog'
+import Card from '../components/Blog/Card'
+import Signin from '../components/Auth/Signin'
 
 export default class App extends Component {
 

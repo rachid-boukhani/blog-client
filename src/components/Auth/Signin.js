@@ -4,7 +4,7 @@ import {Redirect} from 'react-router'
 import {Helmet} from "react-helmet"
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import config from '../config'
+import config from '../../config'
 
 class Signin extends Component {
   constructor (props) {
