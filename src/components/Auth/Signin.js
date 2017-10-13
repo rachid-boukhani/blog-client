@@ -1,68 +1,34 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Redirect} from 'react-router'
+import {connect} from 'react-redux'
 import {Helmet} from "react-helmet"
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import config from '../../config'
+import {loginPost} from '../../actions/auth'
 
 class Signin extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      userinfo: {
-        username: '',
-        password: ''
-      },
-      error: void 0
-    }
-  }
-
-  handleUserNameChange = (e) => {
-    this.setState({userinfo: Object.assign({}, this.state.userinfo, {username: e.target.value})})
-  }
-
-  handlePasswordChange = (e) => {
-    this.setState({userinfo: Object.assign({}, this.state.userinfo, {password: e.target.value})})
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const {username, password} = this.state.userinfo
-    fetch(config.apis.auth, {
-        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-        method: 'POST',
-        body: JSON.stringify({username, password})
-      })
-    .then((response) => response.json())
-    .then(result => {
-      if (result.error) {
-        this.setState({error: result.error})
-      } else {
-        this.setState({error: void 0})
-        this.props.signInDone(result.token)
-      }
-    })
-    .catch(console.error)
-  }
-
   render () {
+    const {handleSubmit} = this.props
     return (
       <section className="auth">
         <Helmet>
           <title>Sign in</title>
         </Helmet>
-        <form className="card"  onSubmit={this.handleSubmit}>
+        <form className="card"  onSubmit={(e) => {
+          e.preventDefault()
+          handleSubmit(this.userNameInput.value, this.passwordInput.value)
+        }}>
           <div>
             <label>username</label>
             <br/>
-            <TextField type="text" name="username" value={this.state.userinfo.username} onChange={this.handleUserNameChange}/>
+            <TextField type="text" name="username" ref={input => this.userNameInput = input}/>
           </div>
           <br/>
           <div>
             <label>password</label>
             <br/>
-            <TextField type="password" name="password" value={this.state.userinfo.password} onChange={this.handlePasswordChange}/>
+            <TextField type="password" name="password" ref={input => this.passwordInput = input}/>
           </div>
           <RaisedButton type="submit" label="Sign in" primary={true}/>
         </form>
@@ -77,7 +43,11 @@ class Signin extends Component {
 }
 
 Signin.propTypes = {
-  signInDone: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired
 }
 
-export default Signin
+const mapDispatchToProps = (dispatch) => ({
+  handleSubmit: (userName, password) => loginPost(dispatch, userName, password)
+})
+
+export default connect(null, mapDispatchToProps)(Signin)
