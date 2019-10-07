@@ -1,0 +1,385 @@
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/material'), require('@angular/material/datepicker'), require('@angular/common'), require('@angular/platform-browser/animations')) :
+    typeof define === 'function' && define.amd ? define('components', ['exports', '@angular/core', '@angular/material', '@angular/material/datepicker', '@angular/common', '@angular/platform-browser/animations'], factory) :
+    (global = global || self, factory(global.components = {}, global.ng.core, global.ng.material, global.ng.material.datepicker, global.ng.common, global.ng.platformBrowser.animations));
+}(this, function (exports, core, material, datepicker, common, animations) { 'use strict';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var Card = /** @class */ (function () {
+        function Card() {
+            this.name = '';
+            this.description = '';
+            this.public = false;
+            this.notesSearchInfo = new NotesSearchInfo();
+        }
+        return Card;
+    }());
+    if (false) {
+        /** @type {?} */
+        Card.prototype.id;
+        /** @type {?} */
+        Card.prototype.name;
+        /** @type {?} */
+        Card.prototype.description;
+        /** @type {?} */
+        Card.prototype.author;
+        /** @type {?} */
+        Card.prototype.public;
+        /** @type {?} */
+        Card.prototype.liked;
+        /** @type {?} */
+        Card.prototype.created;
+        /** @type {?} */
+        Card.prototype.notesSearchInfo;
+        /** @type {?} */
+        Card.prototype.image;
+    }
+    var NotesSearchInfo = /** @class */ (function () {
+        function NotesSearchInfo() {
+            this.text = '';
+            this.proximityValue = 2;
+            this.showEntireSet = false;
+            this.minYear = new Date().getFullYear() - 2;
+            this.maxYear = new Date().getFullYear();
+            this.searchAllCompanies = true;
+            this.selectedCompanies = [];
+            this.selectionType = SelectionType.ALL;
+            this.formTypes = [];
+            this.fiscalPeriods = [];
+        }
+        return NotesSearchInfo;
+    }());
+    if (false) {
+        /** @type {?} */
+        NotesSearchInfo.prototype.text;
+        /** @type {?} */
+        NotesSearchInfo.prototype.proximityValue;
+        /** @type {?} */
+        NotesSearchInfo.prototype.showEntireSet;
+        /** @type {?} */
+        NotesSearchInfo.prototype.minYear;
+        /** @type {?} */
+        NotesSearchInfo.prototype.maxYear;
+        /** @type {?} */
+        NotesSearchInfo.prototype.searchAllCompanies;
+        /** @type {?} */
+        NotesSearchInfo.prototype.selectedCompanies;
+        /** @type {?} */
+        NotesSearchInfo.prototype.selectionType;
+        /** @type {?} */
+        NotesSearchInfo.prototype.formTypes;
+        /** @type {?} */
+        NotesSearchInfo.prototype.fiscalPeriods;
+    }
+    /** @enum {string} */
+    var SelectionType = {
+        ALL: 'All',
+        FORMS: 'FORMS',
+        ER: 'ER',
+        MDA: 'MDA',
+        CL: 'CL',
+        PROXY: 'PROXY',
+    };
+    /** @enum {string} */
+    var FormTypes = {
+        _ALL: 'ALL',
+        _ANN: 'ANN',
+        _QTR: 'QTR',
+        _10K: '10-K',
+        _10Q: '10-Q',
+        _8K: '8-K',
+        _20F: '20-F',
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ConfirmationComponent = /** @class */ (function () {
+        function ConfirmationComponent(thisDialogRef, data) {
+            this.thisDialogRef = thisDialogRef;
+            this.data = data;
+        }
+        /**
+         * @return {?}
+         */
+        ConfirmationComponent.prototype.onCloseConfirm = /**
+         * @return {?}
+         */
+        function () {
+            this.thisDialogRef.close('Confirm');
+        };
+        /**
+         * @return {?}
+         */
+        ConfirmationComponent.prototype.onCloseCancel = /**
+         * @return {?}
+         */
+        function () {
+            this.thisDialogRef.close('Cancel');
+        };
+        ConfirmationComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'idaciti-confirmation',
+                        template: "<h2 mat-dialog-title>{{data.title}}</h2>\n\n<mat-dialog-content>\n  <div [innerHTML]=\"data.message\"></div>\n</mat-dialog-content>\n\n<mat-dialog-actions style=\"float: right;\">\n  <button mat-button mat-dialog-close>Cancel</button>\n  <button mat-button [mat-dialog-close]=\"true\">Confirm</button>\n</mat-dialog-actions>\n",
+                        encapsulation: core.ViewEncapsulation.None,
+                        styles: [""]
+                    }] }
+        ];
+        /** @nocollapse */
+        ConfirmationComponent.ctorParameters = function () { return [
+            { type: material.MatDialogRef },
+            { type: undefined, decorators: [{ type: core.Inject, args: [material.MAT_DIALOG_DATA,] }] }
+        ]; };
+        return ConfirmationComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        ConfirmationComponent.prototype.thisDialogRef;
+        /** @type {?} */
+        ConfirmationComponent.prototype.data;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CardComponent = /** @class */ (function () {
+        function CardComponent(dialog) {
+            this.dialog = dialog;
+            this.viewCard = new core.EventEmitter();
+            this.editCard = new core.EventEmitter();
+            this.removeCard = new core.EventEmitter();
+            this.publishCard = new core.EventEmitter();
+            this.likeCard = new core.EventEmitter();
+        }
+        /**
+         * @return {?}
+         */
+        CardComponent.prototype.setMyStyles = /**
+         * @return {?}
+         */
+        function () {
+            return (this.card && this.card.image) ? {
+                'background-image': "url(" + this.card.image + ")"
+            } : {};
+        };
+        /**
+         * @return {?}
+         */
+        CardComponent.prototype.edit = /**
+         * @return {?}
+         */
+        function () {
+            console.warn('edit: card: ', this.card);
+            this.editCard.emit(this.card.id);
+        };
+        /**
+         * @return {?}
+         */
+        CardComponent.prototype.remove = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var dialogRef = this.dialog.open(ConfirmationComponent, {
+                width: '600px',
+                data: {
+                    title: 'Confirm Deletion',
+                    message: "Are you sure you want to permanently remove <small class=\"text-danger bold\">" + this.card.name + "</small>?"
+                },
+            });
+            dialogRef.afterClosed().subscribe((/**
+             * @param {?} result
+             * @return {?}
+             */
+            function (result) {
+                if (result) {
+                    _this.removeCard.emit(_this.card.id);
+                }
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        CardComponent.prototype.view = /**
+         * @return {?}
+         */
+        function () {
+            this.viewCard.emit(this.card.id);
+        };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
+        CardComponent.prototype.publish = /**
+         * @param {?} status
+         * @return {?}
+         */
+        function (status) {
+            var _this = this;
+            /** @type {?} */
+            var dialogRef = this.dialog.open(ConfirmationComponent, {
+                width: '600px',
+                data: {
+                    title: 'Confirm Publication',
+                    message: "Are you sure you want to make <small class=\"text-danger bold\">" + this.card.name + "</small>\n          " + (status ? ' public' : 'private') + "?"
+                },
+            });
+            dialogRef.afterClosed().subscribe((/**
+             * @param {?} result
+             * @return {?}
+             */
+            function (result) {
+                if (result) {
+                    _this.publishCard.emit({
+                        id: _this.card.id,
+                        status: status
+                    });
+                }
+            }));
+        };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
+        CardComponent.prototype.like = /**
+         * @param {?} status
+         * @return {?}
+         */
+        function (status) {
+            this.likeCard.emit({
+                id: this.card.id,
+                status: status
+            });
+        };
+        CardComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'idaciti-card',
+                        template: "<div class=\"card card-chart\">\n\n  <div class=\"card-header card-header-primary\" data-header-animation=\"true\"\n       [ngClass]=\"{'card-header-image': card.image}\" [ngStyle]=\"setMyStyles()\">\n    <div>\n      <i class=\"material-icons favorite\" (click)=\"like(!card.liked)\"\n         [ngClass]=\"{'enabled-icon': card.liked}\"> {{ card.liked ? 'favorite' : 'favorite_border' }}</i>\n\n      <h4 class=\"text-center\">{{card.name}}</h4>\n      <small class=\"text-center\">{{card.author}}</small>\n      <!--<i class=\"material-icons alert-icon\"  [ngClass]=\"{'enabled-icon': card.public}\">add_alert</i>-->\n    </div>\n  </div>\n  <div class=\"card-body\">\n    <div class=\"card-actions\">\n      <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n              [matTooltipPosition]=\"'below'\" (click)=\"view()\">\n        <i class=\"material-icons\">art_track</i>\n      </button>\n      <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n              [matTooltipPosition]=\"'below'\" (click)=\"edit()\">\n        <i class=\"material-icons\">edit</i>\n      </button>\n      <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n              [matTooltipPosition]=\"'below'\" (click)=\"remove()\">\n        <i class=\"material-icons\">clear</i>\n      </button>\n    </div>\n    <div class=\"card-description\">\n      <p>{{card.description}}</p>\n    </div>\n  </div>\n\n  <div class=\"card-footer\">\n    <div class=\"stats\">\n      <div class=\"icons\">\n        <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\"\n                matTooltip=\"{{ card.public ? 'Make it Private' : 'Make it Public'}}\" [matTooltipPosition]=\"'below'\"\n                (click)=\"publish(!card.public)\">\n          <i *ngIf=\"card.public\" class=\"material-icons\">lock_open</i>\n          <i *ngIf=\"!card.public\" class=\"material-icons\">lock</i>\n        </button>\n        <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"Share\"\n                [matTooltipPosition]=\"'below'\">\n          <i class=\"material-icons\">share</i>\n        </button>\n        <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"Copy\"\n                [matTooltipPosition]=\"'below'\">\n          <i class=\"material-icons\">add_circle_outline</i>\n        </button>\n      </div>\n      <span>Created: {{card.created | date}}</span>\n    </div>\n  </div>\n</div>\n",
+                        encapsulation: core.ViewEncapsulation.None,
+                        styles: [".card{height:295px}.card-header{height:90px;padding-top:15px!important;padding-bottom:15px!important}.card-header>div{justify-content:center;align-items:center;height:100%}.card-header h4{flex:1 1 100%;font-size:21px;font-weight:500;margin-bottom:0}.card-header small{display:block}.card-header i{position:absolute;font-size:20px;cursor:pointer}.card-header i.favorite{right:5px}.card-header i.alert-icon{left:5px;bottom:5px}.card-header i.enabled-icon{color:red}.card-description{height:150px;width:100%;overflow:hidden}.card-description p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6}.card-footer .stats{display:block;width:100%}.card-footer .stats .icons{float:left}.card-footer .stats .icons button{padding:0}.card-footer .stats .icons button i{display:block;cursor:pointer}.card-footer .stats span{float:right}.card .card-header-primary .card-icon,.card .card-header-primary .card-text,.card .card-header-primary:not(.card-header-icon):not(.card-header-text),.card.bg-primary,.card.card-rotate.bg-primary .back,.card.card-rotate.bg-primary .front{background:linear-gradient(60deg,#7595a4,#5b7c8a)}"]
+                    }] }
+        ];
+        /** @nocollapse */
+        CardComponent.ctorParameters = function () { return [
+            { type: material.MatDialog }
+        ]; };
+        CardComponent.propDecorators = {
+            card: [{ type: core.Input }],
+            viewCard: [{ type: core.Output }],
+            editCard: [{ type: core.Output }],
+            removeCard: [{ type: core.Output }],
+            publishCard: [{ type: core.Output }],
+            likeCard: [{ type: core.Output }]
+        };
+        return CardComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        CardComponent.prototype.card;
+        /** @type {?} */
+        CardComponent.prototype.viewCard;
+        /** @type {?} */
+        CardComponent.prototype.editCard;
+        /** @type {?} */
+        CardComponent.prototype.removeCard;
+        /** @type {?} */
+        CardComponent.prototype.publishCard;
+        /** @type {?} */
+        CardComponent.prototype.likeCard;
+        /** @type {?} */
+        CardComponent.prototype.dialog;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var MaterialModule = /** @class */ (function () {
+        function MaterialModule() {
+        }
+        MaterialModule.decorators = [
+            { type: core.NgModule, args: [{
+                        exports: [
+                            material.MatAutocompleteModule,
+                            material.MatButtonModule,
+                            material.MatButtonToggleModule,
+                            material.MatCardModule,
+                            material.MatCheckboxModule,
+                            material.MatChipsModule,
+                            material.MatStepperModule,
+                            datepicker.MatDatepickerModule,
+                            material.MatDialogModule,
+                            material.MatExpansionModule,
+                            material.MatGridListModule,
+                            material.MatIconModule,
+                            material.MatInputModule,
+                            material.MatListModule,
+                            material.MatMenuModule,
+                            material.MatNativeDateModule,
+                            material.MatPaginatorModule,
+                            material.MatProgressBarModule,
+                            material.MatProgressSpinnerModule,
+                            material.MatRadioModule,
+                            material.MatRippleModule,
+                            material.MatSelectModule,
+                            material.MatSidenavModule,
+                            material.MatSliderModule,
+                            material.MatSlideToggleModule,
+                            material.MatSnackBarModule,
+                            material.MatSortModule,
+                            material.MatTableModule,
+                            material.MatTreeModule,
+                            material.MatTabsModule,
+                            material.MatToolbarModule,
+                            material.MatTooltipModule
+                        ],
+                        imports: [],
+                    },] }
+        ];
+        return MaterialModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CardModule = /** @class */ (function () {
+        function CardModule() {
+        }
+        CardModule.decorators = [
+            { type: core.NgModule, args: [{
+                        declarations: [
+                            CardComponent,
+                            ConfirmationComponent
+                        ],
+                        imports: [
+                            common.CommonModule,
+                            animations.BrowserAnimationsModule,
+                            MaterialModule
+                        ],
+                        exports: [CardComponent],
+                        entryComponents: [ConfirmationComponent],
+                    },] }
+        ];
+        return CardModule;
+    }());
+
+    exports.Card = Card;
+    exports.CardComponent = CardComponent;
+    exports.CardModule = CardModule;
+    exports.ConfirmationComponent = ConfirmationComponent;
+    exports.FormTypes = FormTypes;
+    exports.NotesSearchInfo = NotesSearchInfo;
+    exports.SelectionType = SelectionType;
+    exports.ɵa = MaterialModule;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+//# sourceMappingURL=components.umd.js.map

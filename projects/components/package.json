@@ -1,0 +1,9 @@
+{
+  "name": "components",
+  "version": "0.0.4",
+  "peerDependencies": {
+    "@angular/common": "^8.2.8",
+    "@angular/core": "^8.2.8",
+    "ng2-pdf-viewer": "^5.2.3"
+  }
+}

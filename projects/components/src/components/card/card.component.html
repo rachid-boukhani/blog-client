@@ -1,0 +1,55 @@
+<div class="card card-chart">
+
+  <div class="card-header card-header-primary" data-header-animation="true"
+       [ngClass]="{'card-header-image': card.image}" [ngStyle]="setMyStyles()">
+    <div>
+      <i class="material-icons favorite" (click)="like(!card.liked)"
+         [ngClass]="{'enabled-icon': card.liked}"> {{ card.liked ? 'favorite' : 'favorite_border' }}</i>
+
+      <h4 class="text-center">{{card.name}}</h4>
+      <small class="text-center">{{card.author}}</small>
+      <!--<i class="material-icons alert-icon"  [ngClass]="{'enabled-icon': card.public}">add_alert</i>-->
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-actions">
+      <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="View"
+              [matTooltipPosition]="'below'" (click)="view()">
+        <i class="material-icons">art_track</i>
+      </button>
+      <button mat-raised-button type="button" class="btn btn-success btn-link" matTooltip="Edit"
+              [matTooltipPosition]="'below'" (click)="edit()">
+        <i class="material-icons">edit</i>
+      </button>
+      <button mat-raised-button type="button" class="btn btn-danger btn-link" matTooltip="Remove"
+              [matTooltipPosition]="'below'" (click)="remove()">
+        <i class="material-icons">clear</i>
+      </button>
+    </div>
+    <div class="card-description">
+      <p>{{card.description}}</p>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="stats">
+      <div class="icons">
+        <button mat-raised-button type="button" class="btn btn-default btn-link"
+                matTooltip="{{ card.public ? 'Make it Private' : 'Make it Public'}}" [matTooltipPosition]="'below'"
+                (click)="publish(!card.public)">
+          <i *ngIf="card.public" class="material-icons">lock_open</i>
+          <i *ngIf="!card.public" class="material-icons">lock</i>
+        </button>
+        <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="Share"
+                [matTooltipPosition]="'below'">
+          <i class="material-icons">share</i>
+        </button>
+        <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="Copy"
+                [matTooltipPosition]="'below'">
+          <i class="material-icons">add_circle_outline</i>
+        </button>
+      </div>
+      <span>Created: {{card.created | date}}</span>
+    </div>
+  </div>
+</div>

@@ -1,26 +1,70 @@
 {
-  "name": "blog-client-react",
+  "name": "blog-client",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "material-ui": "^0.19.2",
-    "node-sass-chokidar": "0.0.3",
-    "prop-types": "^15.6.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13"
+  "private": false,
+  "repository": "git://github.com/rachid-boukhani/blog-client",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/rachid-boukhani"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "copy_package": "./node_modules/.bin/copy-cli './dist/components/components-*.tgz' './packages'",
+    "build_lib": "ng build components",
+    "watch": "ng build components --watch",
+    "npm_pack": "cd dist/components && npm pack",
+    "package": "npm run build_lib && npm run npm_pack && npm run copy_package"
+  },
+  "peerDependencies": {
+    "ng2-pdf-viewer": "^5.2.3"
+  },
+  "dependencies": {
+    "@angular/animations": "~8.2.4",
+    "@angular/cdk": "^8.1.4",
+    "@angular/common": "~8.2.4",
+    "@angular/compiler": "~8.2.4",
+    "@angular/core": "~8.2.4",
+    "@angular/forms": "~8.2.4",
+    "@angular/material": "^8.1.4",
+    "@angular/platform-browser": "~8.2.4",
+    "@angular/platform-browser-dynamic": "~8.2.4",
+    "@angular/router": "~8.2.4",
+    "highcharts": "^7.2.0",
+    "highcharts-angular": "^2.4.0",
+    "ng2-pdf-viewer": "^5.2.3",
+    "ngx-toastr": "^11.0.0",
+    "rxjs": "~6.4.0",
+    "safe-pipe": "^0.3.0",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "babel-preset-stage-1": "^6.24.1"
+    "@angular-devkit/build-angular": "~0.803.6",
+    "@angular-devkit/build-ng-packagr": "~0.803.6",
+    "@angular/cli": "~8.3.2",
+    "@angular/compiler-cli": "~8.2.4",
+    "@angular/language-service": "~8.2.4",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "codelyzer": "^5.0.0",
+    "copy": "^0.3.2",
+    "jasmine-core": "~3.4.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.1.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-packagr": "^5.4.0",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tsickle": "^0.37.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.5.3"
   }
 }

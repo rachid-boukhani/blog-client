@@ -1,0 +1,94 @@
+@import '../../../../node_modules/@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Source Sans Pro, Roboto, monospace'
+);
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+
+$idaciti-palette-1: (
+  50: #e8f5f2,
+  100: #c5e5dd,
+  200: #9ed4c7,
+  300: #77c3b1,
+  400: #59b6a0,
+  500: #3ca98f,
+  600: #36a287,
+  700: #2e987c,
+  800: #278f72,
+  900: #1a7e60,
+  A100: #b8ffe8,
+  A200: #85ffd7,
+  A400: #52ffc6,
+  A700: #38ffbe,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$idaciti-palette-2: (
+  50: #e9f0f6,
+  100: #c9d9e9,
+  200: #a5c0db,
+  300: #80a7cc,
+  400: #6594c1,
+  500: #4a81b6,
+  600: #4379af,
+  700: #3a6ea6,
+  800: #32649e,
+  900: #22518e,
+  A100: #cce1ff,
+  A200: #99c3ff,
+  A400: #66a4ff,
+  A700: #4d95ff,
+  contrast: (
+    50 : #ffffff,
+    100 : #ffffff,
+    200 : #ffffff,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$idaciti-primary: mat-palette($idaciti-palette-1);
+$idaciti-accent:  mat-palette($idaciti-palette-2);
+$idaciti-warn:    mat-palette($mat-red);
+
+$idaciti-theme: mat-light-theme($idaciti-primary, $idaciti-accent, $idaciti-warn);
+@include angular-material-theme($idaciti-theme);
+
+// Export theme colors
+$primary: mat-color($idaciti-primary);
+$primary-dark: mat-color($idaciti-primary, 900);
+$accent: mat-color($idaciti-accent);
+$warn: mat-color($idaciti-warn);
+$highlight: #b0c745;
+$section-header: #1c2f3d;
+
+$black: #222222;
+$gray: #abaaaa;
+$gray-light: #edf0f1;
+$gray-lighter: #f6f7f8;
